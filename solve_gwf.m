@@ -5,11 +5,11 @@ function P = solve_gwf(coef,F,g)
 
 	K = length(coef);
     
-	[X1,Y1] = meshgrid(1/(2*K):1/K:(2*K-1)/(2*K),1/(2*K):1/K:(2*K-1)/(2*K));
-	[X2,Y2] = meshgrid(0:1/(K-1):1,0:1/(K-1):1);
+	%[X1,Y1] = meshgrid(1/(2*K):1/K:(2*K-1)/(2*K),1/(2*K):1/K:(2*K-1)/(2*K));
+	%[X2,Y2] = meshgrid(0:1/(K-1):1,0:1/(K-1):1);
 	
-	coef = interp2(X1,Y1,coef,X2,Y2,'spline');
-	F = interp2(X1,Y1,F,X2,Y2,'spline');
+	%coef = interp2(X1,Y1,coef,X2,Y2,'spline');
+	%F = interp2(X1,Y1,F,X2,Y2,'spline');
 	
     F = F(2:K-1,2:K-1);
     %incorporate bc into rhs
@@ -35,8 +35,8 @@ function P = solve_gwf(coef,F,g)
 	
 	A = cell2mat(d)*(K-1)^2;
     %insert back boundary data
-	P =[g(1,:);[g(2:K-1,1),vec2mat(A\F(:),K-2),g(2:K-1,K)];g(K,:)];
+	P =[g(:,1)';[g(1,2:K-1)',vec2mat(A\F(:),K-2),g(K,2:K-1)'];g(:,K)']';
 	
-	P = interp2(X2,Y2,P,X1,Y1,'spline')';
+	%P = interp2(X2,Y2,P,X1,Y1,'spline');
 	
 end
