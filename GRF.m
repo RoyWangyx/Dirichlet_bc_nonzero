@@ -17,7 +17,7 @@ function U = GRF(alpha,tau,s)
 	% Construct the KL coefficients
 	L = s*coef.*xi;
     	L(1,1) = 0;
-	U=L;
+     
     	U = idct2(L);
     
 end
