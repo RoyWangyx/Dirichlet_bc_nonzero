@@ -16,8 +16,8 @@ function U = GRF(alpha,tau,s)
 	%coef = (pi^2*(K1.^2+K2.^2)).^(-alpha/2);
 	% Construct the KL coefficients
 	L = s*coef.*xi;
-    L(1,1) = 0;
+    	L(1,1) = 0;
 	U=L;
-    %U = idct2(L);
+    	U = idct2(L);
     
 end
